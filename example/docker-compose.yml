@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+
+  whoogle:
+    image: aexerces/whoogle-instance:v0.6.0
+    container_name: whoogle
+    volumes:
+      - whoogle:/home/whoogle/config:rw
+    networks:
+      - common
+
+  caddy:
+    image: aexerces/caddy-server
+    container_name: caddy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./caddy/Caddyfile:/var/lib/caddy/Caddyfile
+      - cdata:/var/lib/caddy:rw
+    restart: unless-stopped
+    container_name: caddy
+    command: ["caddy", "run", "--config", "/var/lib/caddy/Caddyfile"]
+    networks:
+      - common
+
+volumes:
+  whoogle:
+  cdata:
+networks:
+  common:
