@@ -34,3 +34,6 @@ There is no exposed ports because I'm using caddy server as a reverse proxy, for
 
 The whoogle app itself is accessible on the port 5000.
 
+## [Fly.io](fly.io) instance:
+
+https://whoogle-instance.fly.dev/
